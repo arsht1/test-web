@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="id" data-theme="light">
+<html lang="id" class="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Heritage Planner DIY</title>
+    <title>Heritage Quest: Jelajah Istimewa DIY</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -12,147 +12,162 @@
           extend: {
             colors: {
               batik: {
-                50: '#f8f2e8',
-                100: '#efe3cf',
-                300: '#d8b98a',
-                500: '#9b6b43',
-                700: '#6d472a',
-                900: '#3d2615'
-              },
-              emas: '#d4af37',
-              krem: '#f5eddc'
-            },
-            boxShadow: {
-              batik: '0 10px 30px rgba(109, 71, 42, 0.18)'
+                100: '#f2e8d5',
+                300: '#d7b98b',
+                600: '#8a5a2f',
+                800: '#4a2a1a'
+              }
             }
           }
         }
-      }
+      };
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.1/dist/phaser.min.js"></script>
     <link rel="stylesheet" href="styles.css" />
-    <script>window.GMAPS_API_KEY = "";</script>
   </head>
-  <body class="bg-krem text-batik-900 dark:bg-zinc-900 dark:text-zinc-100 transition-colors duration-300">
-    <header class="sticky top-0 z-40 backdrop-blur bg-krem/90 dark:bg-zinc-900/90 border-b border-batik-100 dark:border-zinc-700">
-      <nav class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+  <body class="bg-amber-50 text-batik-800 dark:bg-zinc-900 dark:text-zinc-100 transition-colors">
+    <header class="sticky top-0 z-40 backdrop-blur bg-amber-50/90 dark:bg-zinc-900/90 border-b border-batik-300 dark:border-zinc-700">
+      <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center gap-3">
         <div>
-          <h1 class="text-lg sm:text-2xl font-bold tracking-wide text-batik-700 dark:text-amber-200">Heritage Planner DIY</h1>
-          <p class="text-xs sm:text-sm text-batik-500 dark:text-zinc-300">Road Trip Wisata Sejarah & Budaya Yogyakarta</p>
+          <h1 class="text-xl sm:text-2xl font-black text-batik-600">Heritage Quest: Jelajah Istimewa DIY</h1>
+          <p class="text-xs sm:text-sm opacity-80">Bermain, Belajar, dan Menjelajah Warisan Istimewa</p>
         </div>
-        <button id="themeToggle" class="px-3 py-2 rounded-xl border border-batik-300 dark:border-zinc-600 text-sm hover:bg-batik-100 dark:hover:bg-zinc-800 transition">
-          🌙 Dark Mode
-        </button>
-      </nav>
+        <button id="themeToggle" class="px-3 py-2 rounded-xl border border-batik-300 dark:border-zinc-600 text-sm">🌙 Dark Mode</button>
+      </div>
     </header>
 
     <main>
-      <section class="hero-pattern relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 py-16 sm:py-24 grid lg:grid-cols-2 gap-8 items-center">
+      <section class="hero py-12 px-4">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-6 items-center">
           <div>
-            <p class="inline-block px-4 py-1 rounded-full text-xs font-semibold tracking-wide bg-amber-100 text-batik-700 border border-amber-300">Cultural Journey Planner</p>
-            <h2 class="mt-4 text-3xl sm:text-5xl font-black leading-tight text-batik-900 dark:text-amber-100">Rencanakan Perjalanan Sejarahmu di Tanah Istimewa</h2>
-            <p class="mt-4 text-sm sm:text-base text-batik-700 dark:text-zinc-200 max-w-xl">Pilih destinasi heritage, dengarkan ceritanya, lalu susun road trip paling efisien untuk menjelajahi warisan budaya DIY dalam satu perjalanan berkesan.</p>
+            <p class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-amber-200 text-batik-800">Game Edukasi Sejarah DIY</p>
+            <h2 class="mt-4 text-4xl font-black leading-tight">Bermain, Belajar, dan Menjelajah Warisan Istimewa</h2>
+            <p class="mt-4 opacity-90">Jelajahi Keraton, Candi, museum, dan benteng legendaris DIY dengan gaya multiplayer ala ZEP Quiz: avatar berjalan, misi, kuis interaktif, badge, leaderboard, dan road trip planner.</p>
             <div class="mt-6 flex flex-wrap gap-3">
-              <a href="#planner" class="px-5 py-3 rounded-xl bg-batik-700 text-krem font-semibold hover:bg-batik-900 transition">Mulai Planner</a>
-              <a href="#edukasi" class="px-5 py-3 rounded-xl border border-batik-400 text-batik-700 dark:text-amber-100 hover:bg-batik-100 dark:hover:bg-zinc-800 transition">Eksplor Nilai Filosofis</a>
+              <a href="#game" class="btn-main">🎮 Mulai Petualangan</a>
+              <a href="#leaderboard" class="btn-alt">🏆 Leaderboard</a>
+              <a href="#roadtrip" class="btn-alt">📜 Road Trip Planner</a>
+              <a href="#guru" class="btn-alt">👨‍🏫 Mode Guru</a>
             </div>
           </div>
-          <div class="relative">
-            <div class="bg-white/80 dark:bg-zinc-800/80 rounded-3xl p-6 shadow-batik border border-batik-100 dark:border-zinc-700">
-              <h3 class="text-xl font-bold text-batik-700 dark:text-amber-100">User Journey</h3>
-              <ol class="mt-4 space-y-3 text-sm">
-                <li>1. Pilih lokasi heritage favorit</li>
-                <li>2. Baca cerita sejarahnya</li>
-                <li>3. Tambahkan ke Road Trip</li>
-                <li>4. Generate rute otomatis</li>
-                <li>5. Download / bagikan itinerary</li>
-              </ol>
+          <div class="panel p-5">
+            <h3 class="font-bold text-lg">Gameplay Loop</h3>
+            <ol class="mt-3 space-y-2 text-sm">
+              <li>1) Buat avatar & pilih mode Single/Multiplayer.</li>
+              <li>2) Jalan di Map DIY (top-down) ke lokasi heritage.</li>
+              <li>3) Baca story mode + info HTM + jam operasional.</li>
+              <li>4) Selesaikan Quick Quiz, Time Challenge, Puzzle.</li>
+              <li>5) Kumpulkan XP, badge, buka Road Trip Challenge.</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section id="game" class="max-w-7xl mx-auto px-4 py-8 grid xl:grid-cols-[2fr,1fr] gap-6">
+        <div class="panel p-4">
+          <div class="flex flex-wrap gap-3 justify-between items-center mb-3">
+            <h3 class="text-xl font-bold">Map DIY Adventure</h3>
+            <div class="flex gap-2 items-center">
+              <input id="playerName" class="px-2 py-1 rounded border bg-transparent" placeholder="Nama avatar" />
+              <select id="gameMode" class="px-2 py-1 rounded border bg-transparent">
+                <option value="single">Single Player</option>
+                <option value="multi">Multiplayer (simulasi realtime)</option>
+              </select>
+              <button id="startGame" class="btn-main">Mulai</button>
+            </div>
+          </div>
+          <div id="game-container" class="game-frame"></div>
+          <p class="mt-2 text-sm">Gunakan <strong>Arrow Keys/WASD</strong> untuk berjalan. Mendekat ke lokasi heritage untuk memulai misi.</p>
+        </div>
+
+        <aside class="space-y-4">
+          <div class="panel p-4">
+            <h4 class="font-bold">Progress Player</h4>
+            <p>XP: <span id="xp">0</span></p>
+            <p>Lokasi selesai: <span id="completedCount">0</span>/6</p>
+            <p id="roadtripStatus" class="text-sm text-amber-700 dark:text-amber-300">Road Trip Challenge terkunci (selesaikan 3 lokasi).</p>
+            <div id="badges" class="mt-2 flex flex-wrap gap-2 text-xs"></div>
+          </div>
+
+          <div class="panel p-4">
+            <h4 class="font-bold">Misi Heritage</h4>
+            <div id="missions" class="text-sm space-y-2"></div>
+          </div>
+
+          <div class="panel p-4">
+            <h4 class="font-bold">Nilai Edukasi</h4>
+            <ul class="text-sm list-disc ml-5 space-y-1">
+              <li>Hamemayu Hayuning Bawana sebagai jiwa pelestarian budaya.</li>
+              <li>Timeline sejarah DIY dari kerajaan hingga era modern.</li>
+              <li>Integrasi nilai Pancasila: gotong royong, toleransi, dan cinta tanah air.</li>
+            </ul>
+          </div>
+        </aside>
+      </section>
+
+      <section id="roadtrip" class="max-w-7xl mx-auto px-4 py-8">
+        <div class="panel p-4">
+          <h3 class="text-xl font-bold">Road Trip Challenge</h3>
+          <p class="text-sm opacity-85">Tambahkan lokasi dari popup misi. Jika rute efisien, dapat bonus XP.</p>
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div>
+              <h4 class="font-semibold">Lokasi Pilihan</h4>
+              <div id="tripList" class="mt-2 text-sm space-y-2"></div>
+              <button id="calcRoute" class="btn-main mt-3">Hitung Rute Efisien</button>
+            </div>
+            <div>
+              <h4 class="font-semibold">Hasil Rute</h4>
+              <div id="routeResult" class="mt-2 text-sm"></div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="planner" class="max-w-7xl mx-auto px-4 py-10 grid xl:grid-cols-[1.1fr_0.9fr] gap-6">
-        <article class="rounded-3xl bg-white dark:bg-zinc-800 border border-batik-100 dark:border-zinc-700 shadow-batik p-4 sm:p-6">
-          <div class="flex flex-wrap gap-3 justify-between items-center">
-            <h3 class="text-2xl font-bold text-batik-700 dark:text-amber-100">Peta Interaktif Heritage DIY</h3>
-            <span class="text-xs text-batik-500 dark:text-zinc-300">Gunakan Google Maps API Key pada <code>window.GMAPS_API_KEY</code>.</span>
-          </div>
-          <div id="map" class="mt-4 h-[420px] w-full rounded-2xl border border-batik-200 dark:border-zinc-600"></div>
-          <p id="mapWarning" class="mt-3 text-sm text-amber-700 dark:text-amber-300 hidden"></p>
+      <section id="leaderboard" class="max-w-7xl mx-auto px-4 py-8">
+        <div class="panel p-4">
+          <h3 class="text-xl font-bold">Leaderboard</h3>
+          <p class="text-sm opacity-85">Mode multiplayer realtime disimulasikan via sinkronisasi localStorage per update skor.</p>
+          <div id="leaderboardList" class="mt-3 space-y-2 text-sm"></div>
+          <button id="downloadCert" class="btn-alt mt-3">Unduh Sertifikat Digital</button>
+        </div>
+      </section>
 
-          <div class="mt-5 grid sm:grid-cols-2 lg:grid-cols-4 gap-3 text-sm">
-            <label class="space-y-1">
-              <span class="font-semibold">Kategori</span>
-              <select id="categoryFilter" class="w-full border rounded-lg px-2 py-2 bg-transparent">
-                <option value="all">Semua</option>
-                <option value="Keraton">Keraton</option>
-                <option value="Candi">Candi</option>
-                <option value="Museum">Museum</option>
-                <option value="Benteng">Benteng</option>
-              </select>
-            </label>
-            <label class="space-y-1">
-              <span class="font-semibold">Maks. HTM (Rp)</span>
-              <input id="priceFilter" type="number" placeholder="50000" class="w-full border rounded-lg px-2 py-2 bg-transparent" />
-            </label>
-            <label class="space-y-1">
-              <span class="font-semibold">Min. Rating</span>
-              <input id="ratingFilter" type="number" min="0" max="5" step="0.1" placeholder="4.5" class="w-full border rounded-lg px-2 py-2 bg-transparent" />
-            </label>
-            <label class="space-y-1">
-              <span class="font-semibold">Maks. Jarak dari Titik Start (km)</span>
-              <input id="distanceFilter" type="number" placeholder="25" class="w-full border rounded-lg px-2 py-2 bg-transparent" />
-            </label>
-          </div>
-        </article>
-
-        <aside class="space-y-6">
-          <article class="rounded-3xl bg-white dark:bg-zinc-800 border border-batik-100 dark:border-zinc-700 shadow-batik p-4 sm:p-6">
-            <h3 class="text-xl font-bold text-batik-700 dark:text-amber-100">Daftar Obyek Heritage DIY</h3>
-            <div id="heritageList" class="mt-4 space-y-3"></div>
-          </article>
-
-          <article class="rounded-3xl bg-white dark:bg-zinc-800 border border-batik-100 dark:border-zinc-700 shadow-batik p-4 sm:p-6">
-            <h3 class="text-xl font-bold text-batik-700 dark:text-amber-100">Road Trip Planner</h3>
-            <div id="tripList" class="mt-3 text-sm space-y-2"></div>
-            <div class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2">
-              <button id="generateBtn" class="px-3 py-2 rounded-xl bg-batik-700 text-krem text-sm font-semibold">Buat Itinerary</button>
-              <button id="downloadBtn" class="px-3 py-2 rounded-xl border border-batik-300 text-sm">Download PDF</button>
-              <button id="shareBtn" class="px-3 py-2 rounded-xl border border-batik-300 text-sm">Bagikan Rute</button>
+      <section id="guru" class="max-w-7xl mx-auto px-4 py-8 pb-16">
+        <div class="panel p-4">
+          <h3 class="text-xl font-bold">Mode Guru</h3>
+          <p class="text-sm opacity-85">Guru dapat menambah soal sendiri dan memantau skor siswa.</p>
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <form id="teacherForm" class="space-y-2">
+              <select id="teacherLocation" class="w-full px-2 py-2 rounded border bg-transparent"></select>
+              <input id="teacherQuestion" class="w-full px-2 py-2 rounded border bg-transparent" placeholder="Pertanyaan" required />
+              <input id="teacherAnswer" class="w-full px-2 py-2 rounded border bg-transparent" placeholder="Jawaban benar" required />
+              <button class="btn-main" type="submit">Simpan Soal Guru</button>
+            </form>
+            <div>
+              <h4 class="font-semibold">Monitoring Siswa</h4>
+              <div id="studentScores" class="mt-2 text-sm"></div>
             </div>
-            <div id="routeResult" class="mt-4 text-sm"></div>
-          </article>
-        </aside>
-      </section>
-
-      <section id="story" class="max-w-7xl mx-auto px-4 pb-10">
-        <article class="rounded-3xl bg-white dark:bg-zinc-800 border border-batik-100 dark:border-zinc-700 shadow-batik p-4 sm:p-6">
-          <h3 class="text-2xl font-bold text-batik-700 dark:text-amber-100">Story Mode</h3>
-          <div id="storyContainer" class="mt-4 text-sm leading-relaxed text-batik-800 dark:text-zinc-100">
-            Pilih destinasi lalu klik <strong>Lihat Cerita</strong> untuk membaca kisah naratif warisan budaya Jogja.
           </div>
-        </article>
-      </section>
-
-      <section id="edukasi" class="max-w-7xl mx-auto px-4 pb-14 grid lg:grid-cols-3 gap-6">
-        <article class="rounded-3xl bg-white dark:bg-zinc-800 border border-batik-100 dark:border-zinc-700 shadow-batik p-4 sm:p-6 lg:col-span-2">
-          <h3 class="text-xl font-bold text-batik-700 dark:text-amber-100">Nilai Filosofis Jogja</h3>
-          <ul class="mt-3 list-disc pl-5 text-sm space-y-2">
-            <li><strong>Sangkan Paraning Dumadi:</strong> perjalanan manusia memahami asal dan tujuan hidup.</li>
-            <li><strong>Hamemayu Hayuning Bawana:</strong> menjaga harmoni manusia, alam, dan spiritualitas.</li>
-            <li><strong>Manunggaling Kawula lan Gusti:</strong> relasi pemimpin, rakyat, dan nilai ketuhanan.</li>
-          </ul>
-          <h4 class="mt-5 font-bold">Timeline Sejarah DIY</h4>
-          <div id="timeline" class="mt-3 space-y-2 text-sm"></div>
-        </article>
-        <article class="rounded-3xl bg-white dark:bg-zinc-800 border border-batik-100 dark:border-zinc-700 shadow-batik p-4 sm:p-6">
-          <h3 class="text-xl font-bold text-batik-700 dark:text-amber-100">Kuis Heritage Jogja</h3>
-          <div id="quiz" class="mt-3 text-sm"></div>
-        </article>
+        </div>
       </section>
     </main>
 
+    <dialog id="encounterModal" class="modal">
+      <div class="modal-card">
+        <button id="closeModal" class="float-right">✖</button>
+        <h3 id="modalTitle" class="text-xl font-bold"></h3>
+        <p id="modalNarrative" class="mt-2"></p>
+        <p id="modalInfo" class="mt-1 text-sm"></p>
+        <div class="mt-2">
+          <button id="addTripBtn" class="btn-alt">🚗 Tambahkan ke Road Trip</button>
+        </div>
+        <div class="mt-4 border-t pt-3">
+          <h4 class="font-semibold">Tantangan</h4>
+          <div id="challengeArea" class="mt-2"></div>
+        </div>
+      </div>
+    </dialog>
+
     <script src="app.js"></script>
-      </body>
+  </body>
 </html>
